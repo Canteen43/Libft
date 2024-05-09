@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:06:30 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/04 17:20:18 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/09 20:56:35 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	old_len;
 	char	*ptr;
-	int		i;
+	size_t	i;
 
+	i = 0;
 	old_len = ft_strlen(s);
 	ptr = ft_calloc(helper_returnlower(len, old_len - start) + 1, sizeof(char));
 	s += start;

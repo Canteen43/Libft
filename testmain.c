@@ -5,24 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 14:48:35 by kweihman          #+#    #+#             */
-/*   Updated: 2024/04/30 16:23:20 by kweihman         ###   ########.fr       */
+/*   Created: 2024/05/09 21:02:16 by kweihman          #+#    #+#             */
+/*   Updated: 2024/05/09 21:16:31 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
-#include <unistd.h>
-
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putendl_fd(char *s, int fd);
+#include "libft.h"
 
 int	main(void)
 {
-	ft_putendl_fd("Hello again", 1);
-	ft_putchar_fd('8', 1);
-	ft_putstr_fd(" Hi there ", 1);
-	ft_putnbr_fd(2147483647, 1);
-	return (0);
+	char	*s;
+
+	s = "    -1001piece";
+	ft_putendl_fd(ft_itoa(ft_atoi(s)), 1);
 }

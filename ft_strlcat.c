@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:40:48 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/03 16:45:34 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/09 20:40:25 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		*dst++ = *src++;
 		size--;
 	}
-	if (size == 1)
-		++*dst == '\0';
+	*dst = '\0';
 	return (len_dst + len_src);
 }

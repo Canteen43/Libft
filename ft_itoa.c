@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:21:04 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/08 16:03:39 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/09 20:18:03 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ char	*ft_itoa(int n)
 	size_t	size;
 	char	*ptr;
 
-	digs = hlp_rtrn_dgts(n);
+	digs = nbr_digs(n);
 	size = digs + 1;
 	if (n < 0)
 		size += 1;
 	ptr = ft_calloc(size, sizeof(char));
-	if (ptr = NULL)
+	if (ptr == NULL)
 		return (NULL);
 	if (n < 0)
 		*ptr++ = '-';

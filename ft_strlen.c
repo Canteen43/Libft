@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 13:31:59 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/03 11:25:13 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/09 20:40:53 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
+	i = 0;
 	while (*s++)
 		i++;
 	return (i);

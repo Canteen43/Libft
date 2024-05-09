@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:48:36 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/09 17:40:19 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/09 20:22:54 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static	int	substr_len(char const *s, char c, int i)
 	int	cnt;
 
 	j = 0;
+	cnt = 0;
 	while (j < i)
 	{
 		if (*s == c)
