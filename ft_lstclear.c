@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:44:10 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/13 15:54:03 by kweihman         ###   ########.fr       */
+/*   Created: 2024/05/15 15:47:57 by kweihman          #+#    #+#             */
+/*   Updated: 2024/05/16 11:18:31 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	helperfunction(int n, int fd)
+/*Deletes and frees the given node and every
+successor of that node, using the function ’del’
+and free(3).
+Finally, the pointer to the list must be set to
+NULL.*/
+/*If it gets a pointer to NULL, it will do nothing. First input will point to
+NULL after function.*/
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	char	a;
+	t_list	*temp;
 
-	if (n <= -10)
-		helperfunction(n / 10, fd);
-	a = '0' + (n % 10 * -1);
-	ft_putchar_fd(a, fd);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n < 0)
-		ft_putchar_fd('-', fd);
-	if (n > 0)
-		n *= -1;
-	helperfunction(n, fd);
+	while (*lst != NULL)
+	{
+		temp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = temp;
+	}
 }

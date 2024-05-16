@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:44:10 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/13 15:54:03 by kweihman         ###   ########.fr       */
+/*   Created: 2024/05/03 17:21:38 by kweihman          #+#    #+#             */
+/*   Updated: 2024/05/09 20:49:11 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	helperfunction(int n, int fd)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	char	a;
+	size_t	i;
+	size_t	j;
 
-	if (n <= -10)
-		helperfunction(n / 10, fd);
-	a = '0' + (n % 10 * -1);
-	ft_putchar_fd(a, fd);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n < 0)
-		ft_putchar_fd('-', fd);
-	if (n > 0)
-		n *= -1;
-	helperfunction(n, fd);
+	if (*little == '\0')
+		return ((char *)big);
+	j = 0;
+	while (big[j] && j < len)
+	{
+		i = 0;
+		while (big[j + i] == little[i] && j + i < len)
+		{
+			i++;
+			if (little[i] == '\0')
+				return ((char *)&big[j]);
+		}
+		j++;
+	}
+	return (NULL);
 }

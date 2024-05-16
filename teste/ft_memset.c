@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testmain.c                                         :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 21:02:16 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/09 21:16:31 by kweihman         ###   ########.fr       */
+/*   Created: 2024/05/03 12:27:47 by kweihman          #+#    #+#             */
+/*   Updated: 2024/05/04 14:22:51 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	main(void)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	char	*s;
-
-	s = "    -1001piece";
-	ft_putendl_fd(ft_itoa(ft_atoi(s)), 1);
+	while (n-- > 0)
+		*(unsigned char *)s++ = c;
+	return (s);
 }

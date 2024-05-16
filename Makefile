@@ -1,6 +1,6 @@
-CC=cc
-CFLAGS= -Wall -Wextra -Werror
-TARGET=libft.a
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+TARGET = libft.a
 
 SRC_FILES = \
 	ft_atoi.c \
@@ -38,6 +38,21 @@ SRC_FILES = \
 	ft_tolower.c \
 	ft_toupper.c \
 
+BONUS_FILES = \
+	ft_lstadd_back.c \
+	ft_lstadd_front.c \
+	ft_lstclear.c \
+	ft_lstdelone.c \
+	ft_lstiter.c \
+	ft_lstlast.c \
+	ft_lstmap.c \
+	ft_lstnew.c \
+	ft_lstsize.c
+
+ifdef BONUS
+SRC_FILES += $(BONUS_FILES)
+endif
+
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 all: $(TARGET)
@@ -57,4 +72,7 @@ fclean: clean
 re: fclean
 	$(MAKE) all
 
-.PHONY: clean fclean all re
+bonus: fclean
+	$(MAKE) BONUS=1 all
+
+.PHONY: clean fclean all re bonus

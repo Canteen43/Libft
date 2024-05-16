@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:44:10 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/13 15:54:03 by kweihman         ###   ########.fr       */
+/*   Created: 2024/05/08 16:04:18 by kweihman          #+#    #+#             */
+/*   Updated: 2024/05/09 20:42:54 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	helperfunction(int n, int fd)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	a;
+	char	*ptr;
+	int		i;
 
-	if (n <= -10)
-		helperfunction(n / 10, fd);
-	a = '0' + (n % 10 * -1);
-	ft_putchar_fd(a, fd);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n < 0)
-		ft_putchar_fd('-', fd);
-	if (n > 0)
-		n *= -1;
-	helperfunction(n, fd);
+	i = 0;
+	ptr = calloc(ft_strlen(s) + 1, sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		ptr[i] = f(i, s[i]);
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:44:10 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/13 15:54:03 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:37:05 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static	void	helperfunction(int n, int fd)
 {
 	char	a;
 
-	if (n <= -10)
+	if (n < -10)
 		helperfunction(n / 10, fd);
 	a = '0' + (n % 10 * -1);
 	ft_putchar_fd(a, fd);

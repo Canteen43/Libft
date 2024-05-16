@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:44:10 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/13 15:54:03 by kweihman         ###   ########.fr       */
+/*   Created: 2024/05/03 13:40:48 by kweihman          #+#    #+#             */
+/*   Updated: 2024/05/09 20:40:25 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	helperfunction(int n, int fd)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char	a;
+	int	len_dst;
+	int	len_src;
 
-	if (n <= -10)
-		helperfunction(n / 10, fd);
-	a = '0' + (n % 10 * -1);
-	ft_putchar_fd(a, fd);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n < 0)
-		ft_putchar_fd('-', fd);
-	if (n > 0)
-		n *= -1;
-	helperfunction(n, fd);
+	len_dst = ft_strlen(dst);
+	len_src = ft_strlen(src);
+	size -= len_dst;
+	dst += len_dst;
+	while (size > 1 && *src)
+	{
+		*dst++ = *src++;
+		size--;
+	}
+	*dst = '\0';
+	return (len_dst + len_src);
 }

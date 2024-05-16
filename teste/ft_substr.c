@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:44:10 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/13 15:54:03 by kweihman         ###   ########.fr       */
+/*   Created: 2024/05/04 14:06:30 by kweihman          #+#    #+#             */
+/*   Updated: 2024/05/09 20:56:35 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	helperfunction(int n, int fd)
+static	int	helper_returnlower(int a, int b)
 {
-	char	a;
-
-	if (n <= -10)
-		helperfunction(n / 10, fd);
-	a = '0' + (n % 10 * -1);
-	ft_putchar_fd(a, fd);
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	if (n < 0)
-		ft_putchar_fd('-', fd);
-	if (n > 0)
-		n *= -1;
-	helperfunction(n, fd);
+	size_t	old_len;
+	char	*ptr;
+	size_t	i;
+
+	i = 0;
+	old_len = ft_strlen(s);
+	ptr = ft_calloc(helper_returnlower(len, old_len - start) + 1, sizeof(char));
+	s += start;
+	while (*s && i < len)
+		ptr[i++] = *s++;
+	return (ptr);
 }
