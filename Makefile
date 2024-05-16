@@ -49,11 +49,8 @@ BONUS_FILES = \
 	ft_lstnew.c \
 	ft_lstsize.c
 
-ifdef BONUS
-SRC_FILES += $(BONUS_FILES)
-endif
-
 OBJ_FILES = $(SRC_FILES:.c=.o)
+OBJ_FILES_INCL = $(SRC_FILES:.c=.o) $(BONUS_FILES:.c=.o)
 
 all: $(TARGET)
 
@@ -64,7 +61,7 @@ $(TARGET): $(OBJ_FILES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ_FILES)
+	rm -f $(OBJ_FILES_INCL)
 
 fclean: clean
 	rm -f $(TARGET)
@@ -72,7 +69,7 @@ fclean: clean
 re: fclean
 	$(MAKE) all
 
-bonus: fclean
-	$(MAKE) BONUS=1 all
+bonus: fclean $(OBJ_FILES_INCL)
+	ar rcs $(TARGET) $(OBJ_FILES_INCL)
 
 .PHONY: clean fclean all re bonus
