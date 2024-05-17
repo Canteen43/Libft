@@ -5,14 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 15:07:47 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/16 16:15:04 by kweihman         ###   ########.fr       */
+/*   Created: 2024/05/17 10:39:26 by kweihman          #+#    #+#             */
+/*   Updated: 2024/05/17 14:32:35 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stdio.h"
-
-static void	fcheckmem(void *ptr, size_t n)
+#include <string.h>
+/*
+em(void *ptr, size_t n)
 {
 	unsigned char	*byteptr;
 
@@ -24,28 +25,33 @@ static void	fcheckmem(void *ptr, size_t n)
 		byteptr++;
 	}
 }
+*/
 
-void	*ft_memchr(const void *s, int c, size_t n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	i;
+	int	len;
 
-	i = 0;
-	while (i > n)
+	len = strlen(src);
+	while (*src && size >= 2)
 	{
-		if (*(unsigned char *)(s + i) == (unsigned char) c)
-			return ((void *)(s + i));
-		i++;
+		*dst++ = *src++;
+		size--;
 	}
-	return (NULL);
+	if (size >= 1)
+		*dst = '\0';
+	return (len);
 }
 
 int	main(void)
 {
-	char s[] = {0, 1, 2 ,3 ,4 ,5};
+	char src[] = "coucou";
+	char dest[10]; memset(dest, 'A', 10);
 
-	/* 1 */ printf(ft_memchr(s, 0, 0) == NULL);
-	/* 2 */ check(ft_memchr(s, 0, 1) == s);
-	/* 3 */ check(ft_memchr(s, 2, 3) == s + 2);
-	/* 4 */ check(ft_memchr(s, 6, 6) == NULL);
-	/* 5 */ check(ft_memchr(s, 2 + 256, 3) == s + 2); //Cast check
+	printf("%lu\n%lu\n%s\n%s\n%d\n%c\n", ft_strlcpy(dest, src, -1), strlen(src), src, dest, strcmp(src, dest), dest[strlen(src) + 1]);
+	/*
+	 memset(dest, 'A', 10);
+	ft_strlcpy(dest, src, 8) == strlen(src) && !memcmp(src, dest, 7)); showLeaks(); memset(dest, 'A', 10);
+	ft_strlcpy(dest, "", 42) == 0 && !memcmp("", dest, 1)); showLeaks(); memset(dest, 0, 10);
+	ft_strlcpy(dest, "1", 0) == 1 && dest[0] == 0); showLeaks(); memset(dest, 'A', 10);
+	*/
 }

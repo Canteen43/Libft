@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   quick_test.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 13:29:27 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/17 14:33:32 by kweihman         ###   ########.fr       */
+/*   Created: 2024/05/17 14:22:30 by kweihman          #+#    #+#             */
+/*   Updated: 2024/05/17 14:24:39 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+int	main(void)
 {
-	int	len;
+	char	*s;
+	char	*s2;
 
-	len = ft_strlen(src);
-	while (*src && size >= 2)
-	{
-		*dst++ = *src++;
-		size--;
-	}
-	if (size >= 1)
-		*dst = '\0';
-	return (len);
+	s = "Hello, it's me";
+	s2 = "Moin, ich bin der dicke Bernd.";
+	strlcpy
 }
