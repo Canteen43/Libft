@@ -6,68 +6,83 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:48:36 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/09 20:22:54 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:40:14 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Split should create substrings of string s with char c as delimiter.*/
-
 /* Returns the occurences of char c in string s. In this case the delimiter.*/
-static	int	count_char(char const *s, char c)
+static	int	str_cnt_char(char const *str, char c)
 {
-	int	i;
-
-	i = 0;
-	while (*s)
-	{
-		if (*s == c)
-			i++;
-		s++;
-	}
-	return (i);
-}
-
-/* This function should return amount of characters between the delimiters */
-static	int	substr_len(char const *s, char c, int i)
-{
-	int	j;
 	int	cnt;
 
-	j = 0;
 	cnt = 0;
-	while (j < i)
+	while (*str)
 	{
-		if (*s == c)
-			j++;
-		s++;
+		if (*str == c)
+			cnt++;
+		str++;
 	}
-	while (*s != c)
+	return (cnt);
+}
+
+/* Counts the number of chars between delimiting chars.
+i=0 will count between start and first delimiter.
+i=1 will count between first and second delimiter.
+For n delimiters, i=n will count between the n-th delimter and the end.*/
+static	int	substr_len(char const *str, char dlm, int i)
+{
+	int	cnt;
+
+	cnt = 0;
+	while (i > 0)
 	{
-		s++;
+		if (*str == dlm)
+			i--;
+		str++;
+	}
+	while (*str != dlm)
+	{
+		str++;
 		cnt++;
 	}
 	return (cnt);
 }
 
-/* Function copies str to location.*/
-static	void	substr_cpy(char const *s, char c, int i, char *sub)
+/* Copies from str to sub. Iterates over str until i delimiters are found,
+ then starts copying and null-terminates.*/
+static	void	substr_cpy(char const *str, char dlm, int i, char *sub)
+{
+	while (i > 0)
+	{
+		if (*str == dlm)
+			i--;
+		str++;
+	}
+	while (*str != dlm)
+	{
+		*sub++ = *str++;
+	}
+	*sub = '\0';
+}
+
+static void	free_all(char **ptr, int i)
 {
 	int	j;
 
+	while (i > 0)
+	{
+		i--;
+		j = 0;
+		while (ptr[i][j])
+			ptr[i][j++] = 0;
+		free(ptr[i]);
+	}
 	j = 0;
-	while (j < i)
-	{
-		if (*s == c)
-			j++;
-		s++;
-	}
-	while (*s != c)
-	{
-		*sub++ = *s++;
-	}
-	*sub = '\0';
+	while (ptr[j])
+		ptr[j++] = NULL;
+	free(ptr);
 }
 
 char	**ft_split(char const *s, char c)
@@ -76,7 +91,7 @@ char	**ft_split(char const *s, char c)
 	char	**ptr;
 	int		i;
 
-	lmt_cnt = count_char(s, c);
+	lmt_cnt = str_cnt_char(s, c);
 	ptr = calloc(lmt_cnt + 2, sizeof(void *));
 	if (ptr == NULL)
 		return (NULL);
@@ -85,7 +100,10 @@ char	**ft_split(char const *s, char c)
 	{
 		ptr[i] = calloc(substr_len(s, c, i) + 1, sizeof(char));
 		if (ptr[i] == NULL)
+		{
+			free_all(ptr, i);
 			return (NULL);
+		}
 		substr_cpy(s, c, i, ptr[i]);
 		i++;
 	}

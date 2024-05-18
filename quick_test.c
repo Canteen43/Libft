@@ -6,11 +6,11 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:22:30 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/17 14:24:39 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:14:10 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <bsd/string.h>
 
 int	main(void)
 {
@@ -19,5 +19,5 @@ int	main(void)
 
 	s = "Hello, it's me";
 	s2 = "Moin, ich bin der dicke Bernd.";
-	strlcpy
+	strlcpy(s2, s, 7);
 }

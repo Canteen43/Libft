@@ -6,14 +6,27 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:26 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/17 14:32:35 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:39:45 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdio.h"
-#include <string.h>
+#include <unistd.h>	// write()
+#include <stdlib.h>	// malloc(), free(), NULL, and size_t
+#include <limits.h>	// INT_MIN and INT_MAX
+#include <stdio.h>	// printf
+#include <bsd/string.h> // checking str-functions
 /*
-em(void *ptr, size_t n)
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (*s++)
+		i++;
+	return (i);
+}
+
+void	fcheckmem(void *ptr, size_t n)
 {
 	unsigned char	*byteptr;
 
@@ -25,33 +38,19 @@ em(void *ptr, size_t n)
 		byteptr++;
 	}
 }
-*/
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+static size_t	min(size_t a, size_t b)
 {
-	int	len;
-
-	len = strlen(src);
-	while (*src && size >= 2)
-	{
-		*dst++ = *src++;
-		size--;
-	}
-	if (size >= 1)
-		*dst = '\0';
-	return (len);
-}
+	if (a > b)
+		return (b);
+	else
+		return (a);
+}*/
 
 int	main(void)
 {
-	char src[] = "coucou";
-	char dest[10]; memset(dest, 'A', 10);
+	char	*ptr;
 
-	printf("%lu\n%lu\n%s\n%s\n%d\n%c\n", ft_strlcpy(dest, src, -1), strlen(src), src, dest, strcmp(src, dest), dest[strlen(src) + 1]);
-	/*
-	 memset(dest, 'A', 10);
-	ft_strlcpy(dest, src, 8) == strlen(src) && !memcmp(src, dest, 7)); showLeaks(); memset(dest, 'A', 10);
-	ft_strlcpy(dest, "", 42) == 0 && !memcmp("", dest, 1)); showLeaks(); memset(dest, 0, 10);
-	ft_strlcpy(dest, "1", 0) == 1 && dest[0] == 0); showLeaks(); memset(dest, 'A', 10);
-	*/
+	ptr = malloc(-1);
+	printf("%p", ptr);
 }

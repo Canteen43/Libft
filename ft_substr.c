@@ -6,13 +6,13 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:06:30 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/09 20:56:35 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:45:25 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	helper_returnlower(int a, int b)
+static	int	min(int a, int b)
 {
 	if (a < b)
 		return (a);
@@ -22,15 +22,25 @@ static	int	helper_returnlower(int a, int b)
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	old_len;
-	char	*ptr;
+	char	*sub;
 	size_t	i;
 
+	if (start >= ft_strlen(s))
+	{
+		sub = ft_calloc(1, sizeof(char));
+		if (!sub)
+			return (NULL);
+		*sub = '\0';
+		return (sub);
+	}
+	sub = ft_calloc(min(len, ft_strlen(s) - start) + 1, sizeof(char));
+	if (!sub)
+		return (NULL);
 	i = 0;
-	old_len = ft_strlen(s);
-	ptr = ft_calloc(helper_returnlower(len, old_len - start) + 1, sizeof(char));
-	s += start;
-	while (*s && i < len)
-		ptr[i++] = *s++;
-	return (ptr);
+	while (s[start + i] && i < len)
+	{
+		sub[i] = s[start + i];
+		i++;
+	}
+	return (sub);
 }
