@@ -50,8 +50,8 @@ BONUS_FILES = \
 	ft_lstnew.c \
 	ft_lstsize.c
 
-OBJ_FILES = $(SRC_FILES:.c=.o)
-OBJ_FILES_INCL = $(SRC_FILES:.c=.o) $(BONUS_FILES:.c=.o)
+OBJ_FILES = $(SRC_FILES:%.c=%.o)
+OBJ_FILES_INCL = $(SRC_FILES:%.c=%.o) $(BONUS_FILES:%.c=%.o)
 
 all: $(NAME)
 
@@ -70,7 +70,7 @@ fclean: clean
 re: fclean
 	$(MAKE) all
 
-bonus: fclean $(OBJ_FILES_INCL)
+bonus: $(OBJ_FILES_INCL)
 	ar rcs $(NAME) $(OBJ_FILES_INCL)
 
 .PHONY: clean fclean all re bonus
