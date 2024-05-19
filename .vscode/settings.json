@@ -5,6 +5,7 @@
 		"cctype": "c",
 		"stddef.h": "c",
 		"stdio.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"string.h": "c"
 	}
 }

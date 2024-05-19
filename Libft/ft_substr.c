@@ -6,18 +6,19 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:06:30 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/18 16:45:25 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/19 14:13:50 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	min(int a, int b)
+static	size_t	find_min(char const *s, size_t start, size_t len)
 {
-	if (a < b)
-		return (a);
-	else
-		return (b);
+	if (ft_strlen(s) <= start)
+		return (0);
+	if (len <= ft_strlen(s) - start)
+		return (len);
+	return (ft_strlen(s) - start);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -25,6 +26,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*sub;
 	size_t	i;
 
+	start = (size_t) start;
 	if (start >= ft_strlen(s))
 	{
 		sub = ft_calloc(1, sizeof(char));
@@ -33,7 +35,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		*sub = '\0';
 		return (sub);
 	}
-	sub = ft_calloc(min(len, ft_strlen(s) - start) + 1, sizeof(char));
+	sub = ft_calloc(find_min(s, start, len) + 1, sizeof(char));
 	if (!sub)
 		return (NULL);
 	i = 0;
@@ -42,5 +44,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		sub[i] = s[start + i];
 		i++;
 	}
+	sub[i] = '\0';
 	return (sub);
 }

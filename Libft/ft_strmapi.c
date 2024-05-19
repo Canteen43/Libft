@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:04:18 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/09 20:42:54 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/19 15:03:07 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	int		i;
 
 	i = 0;
-	ptr = calloc(ft_strlen(s) + 1, sizeof(char));
+	ptr = ft_calloc(ft_strlen(s) + 1, sizeof(char));
 	if (ptr == NULL)
 		return (NULL);
 	while (s[i])
