@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:34 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/15 15:00:21 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/19 15:29:58 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	ft_lstsize(t_list *lst)
 {
 	int	i;
 
-	i = 1;
-	while (lst->next)
+	i = 0;
+	while (lst)
 	{
 		i++;
 		lst = lst->next;

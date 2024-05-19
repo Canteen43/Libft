@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:22:30 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/19 14:09:11 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:40:47 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 #include <stdlib.h>	// malloc(), free(), NULL, and size_t
 #include <limits.h>	// INT_MIN and INT_MAX
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+
 int	main(void)
 {
-	size_t	a;
-	size_t	b;
-
-	a = 1;
-	b = 2;
-	printf("%lu", a-b);
+	printf("%lu", sizeof(t_list));
 }
-

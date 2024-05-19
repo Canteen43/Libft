@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 15:13:45 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/04 15:23:27 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/19 16:53:27 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	size_needed = ft_strlen(s1) + ft_strlen(s2) + 1;
 	s3 = ft_calloc(size_needed, sizeof(char));
+	if (!s3)
+		return (NULL);
 	while (*s1)
 		*s3++ = *s1++;
 	while (*s2)
