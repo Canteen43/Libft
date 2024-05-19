@@ -1,8 +1,2 @@
-# Ignore everything
-*
-
-# The following are an exception to the ignoring
-!.gitignore
-!Makefile
-!libft.h
-!ft_*.c
+# Ignoring my standard binary
+a.out

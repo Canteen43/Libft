@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-TARGET = libft.a
+NAME = libft.a
 HEADER = libft.h
 
 SRC_FILES = \
@@ -53,10 +53,10 @@ BONUS_FILES = \
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES_INCL = $(SRC_FILES:.c=.o) $(BONUS_FILES:.c=.o)
 
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): $(OBJ_FILES)
-	ar rcs $(TARGET) $(OBJ_FILES)
+$(NAME): $(OBJ_FILES)
+	ar rcs $(NAME) $(OBJ_FILES)
 
 %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -65,12 +65,12 @@ clean:
 	rm -f $(OBJ_FILES_INCL)
 
 fclean: clean
-	rm -f $(TARGET)
+	rm -f $(NAME)
 
 re: fclean
 	$(MAKE) all
 
 bonus: fclean $(OBJ_FILES_INCL)
-	ar rcs $(TARGET) $(OBJ_FILES_INCL)
+	ar rcs $(NAME) $(OBJ_FILES_INCL)
 
 .PHONY: clean fclean all re bonus
