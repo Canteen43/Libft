@@ -1,6 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 TARGET = libft.a
+HEADER = libft.h
 
 SRC_FILES = \
 	ft_atoi.c \
@@ -57,7 +58,7 @@ all: $(TARGET)
 $(TARGET): $(OBJ_FILES)
 	ar rcs $(TARGET) $(OBJ_FILES)
 
-%.o: %.c
+%.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

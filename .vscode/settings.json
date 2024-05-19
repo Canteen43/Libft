@@ -4,6 +4,7 @@
 		"libft.h": "c",
 		"cctype": "c",
 		"stddef.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"sstream": "c"
 	}
 }

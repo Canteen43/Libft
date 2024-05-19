@@ -6,43 +6,45 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:48:36 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/18 17:40:14 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:11:11 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Returns the occurences of char c in string s. In this case the delimiter.*/
-static	int	str_cnt_char(char const *str, char c)
+/* Returns pointer to substring with index. Returns NULL if there is no
+substring with index. Can also be used to count number of substrings.*/
+static	const char	*index_substr(const char *str, int index, char dlm)
 {
-	int	cnt;
+	int	char_sctn;
 
-	cnt = 0;
-	while (*str)
+	char_sctn = 0;
+	while (*str && index > 0)
 	{
-		if (*str == c)
-			cnt++;
+		if (char_sctn == 1 && *str == dlm)
+			index--;
+		if (*str != dlm)
+			char_sctn = 1;
+		if (*str == dlm)
+			char_sctn = 0;
 		str++;
 	}
-	return (cnt);
+	while (*str && *str == dlm)
+		str++;
+	if (!*str)
+		return (NULL);
+	return (str);
 }
 
-/* Counts the number of chars between delimiting chars.
-i=0 will count between start and first delimiter.
-i=1 will count between first and second delimiter.
-For n delimiters, i=n will count between the n-th delimter and the end.*/
+/* Counts length of substring. Str is set to first char of substring with 
+index i. Then bytes are counted until delimiter or Null is found.*/
 static	int	substr_len(char const *str, char dlm, int i)
 {
 	int	cnt;
 
+	str = index_substr(str, i, dlm);
 	cnt = 0;
-	while (i > 0)
-	{
-		if (*str == dlm)
-			i--;
-		str++;
-	}
-	while (*str != dlm)
+	while (*str != dlm && *str)
 	{
 		str++;
 		cnt++;
@@ -50,23 +52,20 @@ static	int	substr_len(char const *str, char dlm, int i)
 	return (cnt);
 }
 
-/* Copies from str to sub. Iterates over str until i delimiters are found,
- then starts copying and null-terminates.*/
+/* Copies from str to sub. Str is set to location of first char of substring of
+ index i. Then str is written to sub until dlm or null is found.*/
 static	void	substr_cpy(char const *str, char dlm, int i, char *sub)
 {
-	while (i > 0)
-	{
-		if (*str == dlm)
-			i--;
-		str++;
-	}
-	while (*str != dlm)
+	str = index_substr(str, i, dlm);
+	while (*str != dlm && *str)
 	{
 		*sub++ = *str++;
 	}
 	*sub = '\0';
 }
 
+/*Frees and deletes all substrings that are already allocated and then
+ frees array of piointers.*/
 static void	free_all(char **ptr, int i)
 {
 	int	j;
@@ -87,16 +86,18 @@ static void	free_all(char **ptr, int i)
 
 char	**ft_split(char const *s, char c)
 {
-	int		lmt_cnt;
+	int		sub_cnt;
 	char	**ptr;
 	int		i;
 
-	lmt_cnt = str_cnt_char(s, c);
-	ptr = calloc(lmt_cnt + 2, sizeof(void *));
+	sub_cnt = 0;
+	while (index_substr(s, sub_cnt, c))
+		sub_cnt++;
+	ptr = calloc(sub_cnt + 1, sizeof(void *));
 	if (ptr == NULL)
 		return (NULL);
 	i = 0;
-	while (i <= lmt_cnt)
+	while (i < sub_cnt)
 	{
 		ptr[i] = calloc(substr_len(s, c, i) + 1, sizeof(char));
 		if (ptr[i] == NULL)
