@@ -6,7 +6,7 @@
 /*   By: kweihman <kweihman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:39:14 by kweihman          #+#    #+#             */
-/*   Updated: 2024/05/19 19:11:11 by kweihman         ###   ########.fr       */
+/*   Updated: 2024/05/19 22:03:24 by kweihman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 list resulting of the successive applications of
 the function ’f’. The ’del’ function is used to
 delete the content of a node if needed.*/
+/*Gives memory leak error for francinette --strict. However, I think this
+function is not supposed to handle memory leaks. If anything, the del function
+should handle setting stuff to zero.*/
+/*Fails strict francinette because of memory leak. However, I think memory
+leak has to occur because freeing of memory is to be handled by the
+del-function.*/
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*head;
