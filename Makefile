@@ -3,6 +3,11 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 HEADER = libft.h
 
+# Debugging (DEBUG=1)
+ifeq ($(DEBUG), 1)
+	CFLAGS += -g3 -O0
+endif
+
 SRC_FILES = \
 	ft_atoi.c \
 	ft_bzero.c \
